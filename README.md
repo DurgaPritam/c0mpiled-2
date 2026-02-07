@@ -1,58 +1,55 @@
-
-# TrustMove UAE 🏙️
+# TrustMove UAE
 
 **Agentic Relocation & Rental Trust Assistant**
 
-TrustMove UAE is an agentic assistant that helps people relocating to the UAE **choose the right neighborhood** and **assess rental listing trust/safety** in a single conversation.
+TrustMove UAE is an agentic assistant designed to help people relocating to the UAE make better housing decisions. It supports users in two connected steps: choosing the right neighborhood and assessing the trust and safety of a rental listing, all within a single conversation.
 
-It combines **area-level reasoning** with **rule-based scam detection**, producing transparent, explainable outputs suitable for civic and real-estate contexts.
+By combining area-level reasoning with rule-based scam detection, TrustMove produces clear, explainable guidance suitable for real-world civic and real-estate use cases.
 
 ---
 
 ## Problem
 
-Relocation to the UAE typically fails in two places:
+Relocating to the UAE commonly breaks down in two places.
 
-1. **Area Selection**
+### Area Selection
 
-   * Users don’t know which neighborhoods fit their job, budget, commute, and lifestyle.
-   * Advice is fragmented (friends, Reddit, hearsay).
+Many newcomers struggle to understand which neighborhoods fit their job location, budget, commute preferences, and lifestyle. Advice is usually fragmented across friends, online forums, and informal recommendations, which makes it difficult to compare options realistically.
 
-2. **Rental Scams**
+### Rental Scams
 
-   * Listings on WhatsApp and classifieds are often unverified.
-   * Common risks include fake agents, urgency tactics, and upfront deposit fraud.
+Once an area is chosen, users often rely on unverified listings from WhatsApp or classifieds. This exposes them to common risks such as fake agents, pressure tactics, and requests for deposits before viewings.
 
-These are usually treated as separate steps — but they are part of the **same decision journey**.
+These two challenges are typically treated as separate steps, even though they are part of the same decision journey.
 
 ---
 
 ## Solution
 
-TrustMove UAE addresses both problems in one agentic workflow:
+TrustMove UAE addresses both challenges through a single agentic workflow:
 
-1. Understand the user’s constraints (work, budget, commute, lifestyle)
-2. Recommend **areas (not live listings)**
-3. Evaluate the **scam risk of a pasted rental listing**
-4. Explain every decision with a clear trace
+1. Collects key user constraints such as work location, budget, commute, and lifestyle
+2. Recommends suitable areas rather than individual listings
+3. Evaluates the scam risk of a pasted rental listing using transparent heuristics
+4. Explains every recommendation and risk assessment through a clear reasoning trace
 
 ---
 
 ## Agent Architecture
 
-TrustMove behaves as a coordinated multi-agent system:
+TrustMove operates as a coordinated multi-agent system:
 
 * **Interview Agent**
-  Collects minimal inputs (max 2–3 clarifying questions)
+  Gathers essential inputs using no more than two to three clarifying questions
 
 * **Reasoning Agent**
-  Ranks neighborhoods using constraints and trade-offs
+  Ranks neighborhoods based on constraints, trade-offs, and budget realism
 
 * **Risk Analysis Agent**
-  Computes a scam risk score using heuristic signals
+  Applies a consistent heuristic rubric to estimate scam risk
 
 * **Explanation Agent**
-  Produces a decision trace for transparency and demo clarity
+  Produces a concise decision trace to ensure transparency and demo clarity
 
 ---
 
@@ -60,109 +57,118 @@ TrustMove behaves as a coordinated multi-agent system:
 
 ### Phase A — Area Recommendations
 
-Inputs:
+**Inputs**
 
 * Work location
-* Budget (AED/year)
-* Unit type (Studio / 1BHK / 2BHK)
-* Commute preference (metro vs car)
-* Lifestyle (quiet / social / family)
+* Budget (AED per year)
+* Unit type (Studio, 1BHK, 2BHK)
+* Commute preference (metro or car)
+* Lifestyle preference (quiet, social, family-oriented)
 * Must-haves and dealbreakers
 
-Output:
+**Outputs**
 
-* Top 3 recommended areas + 1 wildcard
+* Top three recommended areas plus one wildcard option
 * For each area:
 
-  * Fit summary
-  * Rent realism vs budget
-  * Commute note
-  * Lifestyle vibe
-  * Pros / cons
+  * Short fit summary
+  * Rent realism relative to the stated budget
+  * Approximate commute note
+  * Lifestyle characteristics
+  * Key pros and cons
   * Confidence level
 
 ---
 
 ### Phase B — Listing Trust Check
 
-User provides listing text or details.
+The user provides a rental listing or its details.
 
-Output:
+**Outputs**
 
-* **Scam Risk Score (0–100)**
-* Risk label: Low / Medium / High
-* Top risk signals with severity
-* Actionable “What to do next” checklist
+* Scam risk score (0–100)
+* Risk label: Low, Medium, or High
+* Key risk signals with severity
+* A practical checklist outlining next steps
 
 ---
 
 ## Scam Risk Scoring (Heuristic)
 
-Rule-based scoring (no live scraping):
+TrustMove uses a rule-based approach with no live web scraping.
 
-Signals include:
+Signals considered include:
 
-* Price significantly below area average
-* WhatsApp-only contact / refusal to call
-* Urgency language (“deposit today”)
-* Missing broker license or RERA number
-* No viewing allowed
-* Deposit requested before viewing
-* Vague or inconsistent listing details
+* Pricing far below typical area averages
+* WhatsApp-only communication or refusal to speak by phone
+* Urgency language such as “deposit today”
+* Missing broker license or RERA details
+* Refusal or inability to arrange a viewing
+* Requests for payment before viewing
+* Vague or inconsistent listing information
 
-Scores are clamped to **0–100** and labeled clearly.
+All scores are clamped between 0 and 100 and clearly labeled.
 
 ---
 
 ## Area Dataset (Hackathon Scope)
 
-* Focus: **Dubai**
-* Small internal dataset of common neighborhoods
+* Focused on Dubai
+* Uses a small internal dataset of common neighborhoods
 * Includes:
 
-  * Average rents
+  * Typical rent ranges
   * Metro access
-  * Lifestyle tags
-  * Notes and trade-offs
+  * Lifestyle indicators
+  * Notes on trade-offs and limitations
 
-TrustMove **recommends areas, not listings**.
+TrustMove recommends areas rather than individual properties.
 
 ---
 
-## Explainability & Trace
+## Explainability and Trace
 
-Each response includes a **Trace** section showing:
+Each response includes a short trace section that outlines:
 
 * Inputs considered
 * Signals detected
-* Reasoning behind rankings and risk scores
+* Reasoning behind area rankings and risk scores
 
-This ensures transparency for users, judges, and regulators.
-
----
-
-## Tech Stack / Partner Tools
-
-* **Crustdata** – Optional broker/company enrichment to reduce impersonation scams
-* **Lingo.dev** – Arabic ↔ English localization for UAE users
-* **Lyra** – Agent distribution and deployment marketplace
-* **Trace** – Decision logging and explainability
-* **Uplift AI** – Conversation analysis to improve prompts and safety guidance over time
+This supports user trust, judging clarity, and future regulatory alignment.
 
 ---
 
-## Safety & Disclaimers
+## Tech Stack and Partner Tools
 
-* Not a legal authority
-* Provides risk assessment, not guarantees
-* Encourages:
+* **Crustdata**
+  Optional enrichment of broker or company details to reduce impersonation scams
 
-  * Broker/RERA verification
-  * In-person or video viewings
-  * No upfront deposits
-  * Official payment channels only
+* **Lingo.dev**
+  Arabic and English localization to support the UAE’s bilingual user base
 
-Unsafe or illegal requests are refused with safer alternatives suggested.
+* **Lyra**
+  Distribution and deployment of TrustMove as a reusable agent
+
+* **Trace**
+  Logging of decision steps to make agent reasoning transparent and auditable
+
+* **Uplift AI**
+  Analysis of anonymized conversations to improve prompts and safety guidance over time
+
+---
+
+## Safety and Disclaimers
+
+* TrustMove is not a legal authority
+* It provides risk guidance, not guarantees
+* Users are encouraged to:
+
+  * Verify broker and RERA details
+  * Conduct in-person or video viewings
+  * Avoid upfront deposits
+  * Use official payment channels
+
+Requests involving illegal or unsafe actions are refused, with safer alternatives suggested.
 
 ---
 
@@ -170,13 +176,12 @@ Unsafe or illegal requests are refused with safer alternatives suggested.
 
 * No live web scraping
 * No real payments or integrations
-* Rule-based logic
-* Demo-first design
-* Beginner-friendly implementation
+* Rule-based logic only
+* Demo-first implementation
+* Beginner-friendly design choices
 
 ---
 
 ## Vision
 
-TrustMove UAE demonstrates how **adaptive city agents** can embed trust into everyday decisions — not by controlling users, but by helping them reason safely and transparently.
-
+TrustMove UAE illustrates how adaptive city agents can support everyday decisions by embedding trust, transparency, and practical reasoning into the relocation experience.
