@@ -1,8 +1,3 @@
-Got it 👍
-Here’s a **clean, GitHub-style README**: tighter, more technical, skimmable, and judge/dev friendly.
-You can paste this directly into a GitHub repo as `README.md`.
-
----
 
 # TrustMove UAE 🏙️
 
