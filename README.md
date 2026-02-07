@@ -6,7 +6,6 @@ TrustMove UAE is an agentic assistant designed to help people relocating to the 
 
 By combining area-level reasoning with rule-based scam detection, TrustMove produces clear, explainable guidance suitable for real-world civic and real-estate use cases.
 
----
 
 ## Problem
 
@@ -22,7 +21,6 @@ Once an area is chosen, users often rely on unverified listings from WhatsApp or
 
 These two challenges are typically treated as separate steps, even though they are part of the same decision journey.
 
----
 
 ## Solution
 
@@ -33,7 +31,6 @@ TrustMove UAE addresses both challenges through a single agentic workflow:
 3. Evaluates the scam risk of a pasted rental listing using transparent heuristics
 4. Explains every recommendation and risk assessment through a clear reasoning trace
 
----
 
 ## Agent Architecture
 
@@ -51,7 +48,6 @@ TrustMove operates as a coordinated multi-agent system:
 * **Explanation Agent**
   Produces a concise decision trace to ensure transparency and demo clarity
 
----
 
 ## Conversation Flow
 
@@ -78,7 +74,6 @@ TrustMove operates as a coordinated multi-agent system:
   * Key pros and cons
   * Confidence level
 
----
 
 ### Phase B — Listing Trust Check
 
@@ -91,7 +86,6 @@ The user provides a rental listing or its details.
 * Key risk signals with severity
 * A practical checklist outlining next steps
 
----
 
 ## Scam Risk Scoring (Heuristic)
 
@@ -109,9 +103,8 @@ Signals considered include:
 
 All scores are clamped between 0 and 100 and clearly labeled.
 
----
 
-## Area Dataset (Hackathon Scope)
+## Area Dataset
 
 * Focused on Dubai
 * Uses a small internal dataset of common neighborhoods
@@ -124,7 +117,6 @@ All scores are clamped between 0 and 100 and clearly labeled.
 
 TrustMove recommends areas rather than individual properties.
 
----
 
 ## Explainability and Trace
 
@@ -136,7 +128,6 @@ Each response includes a short trace section that outlines:
 
 This supports user trust, judging clarity, and future regulatory alignment.
 
----
 
 ## Tech Stack and Partner Tools
 
@@ -155,7 +146,6 @@ This supports user trust, judging clarity, and future regulatory alignment.
 * **Uplift AI**
   Analysis of anonymized conversations to improve prompts and safety guidance over time
 
----
 
 ## Safety and Disclaimers
 
@@ -169,18 +159,6 @@ This supports user trust, judging clarity, and future regulatory alignment.
   * Use official payment channels
 
 Requests involving illegal or unsafe actions are refused, with safer alternatives suggested.
-
----
-
-## Hackathon Constraints
-
-* No live web scraping
-* No real payments or integrations
-* Rule-based logic only
-* Demo-first implementation
-* Beginner-friendly design choices
-
----
 
 ## Vision
 
